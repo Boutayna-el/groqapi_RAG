@@ -1,0 +1,4 @@
+langchain_community
+pypdf
+sentence_transformers
+faiss-cpu
