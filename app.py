@@ -9,6 +9,7 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyPDFDirectoryLoader
+from langchain.chains import create_retrieval_chain
 
 from dotenv import load_dotenv
 
@@ -57,7 +58,7 @@ if st.button("Documents Embedding"):
 if prompt1:
     document_chain= create_stuff_documents_chain(llm, prompt)
     retriever = st.session_state.vectors.as_retriever()
-    retrieval_chain = create_retieval_chain(retriever, document_chain)
+    retrieval_chain = create_retrieval_chain(retriever, document_chain)
     start=time.process_time()
     response = retrieval_chain.invoke({"input":prompt1})
     print("Response Time:", time.process_time()-start)
